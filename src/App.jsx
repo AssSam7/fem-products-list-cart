@@ -1,7 +1,12 @@
-import "./App.css";
+import ProductsList from "./components/ProductsList";
+import products from "./data.json";
 
 function App() {
-  return <div class="bg-amber-200">Hello World</div>;
+  return (
+    <div className="container">
+      <ProductsList products={products} />
+    </div>
+  );
 }
 
 export default App;
