@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="flex gap-9">
       <ProductsList products={products} />
-      <ProductCart cartItems={[]} />
+      <ProductCart />
     </div>
   );
 }

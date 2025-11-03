@@ -1,35 +1,20 @@
-import { useContext, useEffect, useState } from "react";
+/* Assets */
 import AddToCartIcon from "../../assets/images/icon-add-to-cart.svg";
 import IncrementQuantityIcon from "../../assets/images/icon-increment-quantity.svg";
 import DecrementQuantityIcon from "../../assets/images/icon-decrement-quantity.svg";
-import { CartContext as cartContext } from "../context/CartContextProvider";
+/* Custom Hooks */
+import useProductCard from "../hooks/useProductCard";
 
 export default function ProductCard({ product }) {
   const { image, category, name, price } = product;
-  const [isProductBeingAdded, setIsProductBeingAdded] = useState(false);
-  const [productQuantity, setProductQuantity] = useState(0);
 
-  const { dispatch } = useContext(cartContext);
-
-  const handleAddToCart = () => {
-    setIsProductBeingAdded(true);
-    setProductQuantity(1);
-    dispatch({ type: "add", item: product });
-  };
-
-  const handleIncrQuantity = () => {
-    setProductQuantity((quantity) => quantity + 1);
-  };
-
-  const handleDecrQuantity = () => {
-    setProductQuantity((quantity) => (quantity > 1 ? quantity - 1 : 0));
-  };
-
-  useEffect(() => {
-    if (productQuantity === 0) {
-      setIsProductBeingAdded(false);
-    }
-  }, [productQuantity]);
+  const {
+    productQuantity,
+    isProductBeingAdded,
+    handleAddToCart,
+    handleIncrQuantity,
+    handleDecrQuantity,
+  } = useProductCard(product);
 
   return (
     <div className="flex flex-col gap-3">
