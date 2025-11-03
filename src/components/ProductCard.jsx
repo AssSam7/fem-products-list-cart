@@ -1,27 +1,76 @@
+import { useContext, useEffect, useState } from "react";
 import AddToCartIcon from "../../assets/images/icon-add-to-cart.svg";
+import IncrementQuantityIcon from "../../assets/images/icon-increment-quantity.svg";
+import DecrementQuantityIcon from "../../assets/images/icon-decrement-quantity.svg";
+import { CartContext as cartContext } from "../context/CartContextProvider";
 
-export default function ProductCard({
-  imgSrc,
-  category,
-  name,
-  price,
-  onAddToCart,
-}) {
+export default function ProductCard({ product }) {
+  const { image, category, name, price } = product;
+  const [isProductBeingAdded, setIsProductBeingAdded] = useState(false);
+  const [productQuantity, setProductQuantity] = useState(0);
+
+  const { dispatch } = useContext(cartContext);
+
+  const handleAddToCart = () => {
+    setIsProductBeingAdded(true);
+    setProductQuantity(1);
+    dispatch({ type: "add", item: product });
+  };
+
+  const handleIncrQuantity = () => {
+    setProductQuantity((quantity) => quantity + 1);
+  };
+
+  const handleDecrQuantity = () => {
+    setProductQuantity((quantity) => (quantity > 1 ? quantity - 1 : 0));
+  };
+
+  useEffect(() => {
+    if (productQuantity === 0) {
+      setIsProductBeingAdded(false);
+    }
+  }, [productQuantity]);
+
   return (
     <div className="flex flex-col gap-3">
       <div className="relative">
-        <img src={imgSrc} alt={name} className="w-full h-auto rounded-lg" />
+        <img
+          src={image["desktop"]}
+          alt={name}
+          className="w-full h-auto rounded-lg"
+        />
         <div className="w-full flex justify-center">
           <button
-            onClick={onAddToCart}
-            className="cursor-pointer mt-[-22px] border-[1.7px] border-[#C8A59A] bg-[white] text-[#2E0D09] px-4 py-2 rounded-full font-medium"
+            className="w-[150px] cursor-pointer mt-[-22px] border-[1.7px] border-[#C8A59A] bg-[white] text-[#2E0D09] px-4 py-2 rounded-full font-medium flex justify-between items-center"
+            onClick={!isProductBeingAdded ? handleAddToCart : () => {}}
+            style={{
+              backgroundColor: `${isProductBeingAdded ? "#D6452A" : ""}`,
+            }}
           >
-            <img
-              src={AddToCartIcon}
-              alt="Add to cart"
-              className="inline-block mr-2"
-            />
-            <span>Add to Cart</span>
+            {!isProductBeingAdded ? (
+              <>
+                <img
+                  src={AddToCartIcon}
+                  alt="Add to cart"
+                  className="inline-block mr-2"
+                />
+                <span>Add to Cart</span>
+              </>
+            ) : (
+              <>
+                <img
+                  src={DecrementQuantityIcon}
+                  alt="Decrement Quantity"
+                  onClick={handleDecrQuantity}
+                />
+                <p className="text-white text-lg">{productQuantity}</p>
+                <img
+                  src={IncrementQuantityIcon}
+                  alt="Increment Quantity"
+                  onClick={handleIncrQuantity}
+                />
+              </>
+            )}
           </button>
         </div>
       </div>
