@@ -6,7 +6,7 @@ import DecrementQuantityIcon from "../../assets/images/icon-decrement-quantity.s
 import useProductCard from "../hooks/useProductCard";
 
 export default function ProductCard({ product }) {
-  const { image, category, name, price } = product;
+  const { id, image, category, name, price } = product;
 
   const {
     productQuantity,
@@ -26,7 +26,7 @@ export default function ProductCard({ product }) {
         />
         <div className="w-full flex justify-center">
           <button
-            className="w-[150px] cursor-pointer mt-[-22px] border-[1.7px] border-[#C8A59A] bg-[white] text-[#2E0D09] px-4 py-2 rounded-full font-medium flex justify-between items-center"
+            className="w-40 cursor-pointer mt-[-22px] border-[1.7px] border-[#C8A59A] bg-[white] text-[#2E0D09] px-4 py-2 rounded-full font-medium flex justify-between items-center"
             onClick={!isProductBeingAdded ? handleAddToCart : () => {}}
             style={{
               backgroundColor: `${isProductBeingAdded ? "#D6452A" : ""}`,
@@ -46,13 +46,13 @@ export default function ProductCard({ product }) {
                 <img
                   src={DecrementQuantityIcon}
                   alt="Decrement Quantity"
-                  onClick={handleDecrQuantity}
+                  onClick={() => handleDecrQuantity(id)}
                 />
                 <p className="text-white text-lg">{productQuantity}</p>
                 <img
                   src={IncrementQuantityIcon}
                   alt="Increment Quantity"
-                  onClick={handleIncrQuantity}
+                  onClick={() => handleIncrQuantity(id)}
                 />
               </>
             )}

@@ -1,14 +1,12 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "RedHatText";
-  src: url("../assets/fonts/static/RedHatText-Bold.ttf") format("ttf"),
-    url("../assets/fonts/static/RedHatText-Regular.ttf") format("ttf"),
-    url("../assets/fonts/static/RedHatText-SemiBold.ttf") format("ttf");
+  font-family: "MyCustomFont";
+  src: url("../assets/fonts/static/RedHatText-SemiBold.ttf");
 }
 
 body {
-  font-family: "RedHatText", sans-serif;
+  font-family: "MyCustomFont", sans-serif;
   margin: 4rem 6rem;
   background-color: #fdf6f3;
 }

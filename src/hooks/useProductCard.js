@@ -10,15 +10,29 @@ export default function useProductCard(product) {
   const handleAddToCart = () => {
     setIsProductBeingAdded(true);
     setProductQuantity(1);
-    dispatch({ type: "add", item: { ...product, quantity: 1 } });
+    dispatch({
+      type: "add",
+      item: {
+        ...product,
+        price: product.price.toFixed(2),
+        quantity: 1,
+        totalCost: product.price.toFixed(2),
+      },
+    });
   };
 
-  const handleIncrQuantity = () => {
+  const handleIncrQuantity = (id) => {
     setProductQuantity((quantity) => quantity + 1);
+    dispatch({ type: "incr_quantity", id });
   };
 
-  const handleDecrQuantity = () => {
+  const handleDecrQuantity = (id) => {
     setProductQuantity((quantity) => (quantity > 1 ? quantity - 1 : 0));
+    if (productQuantity > 1) {
+      dispatch({ type: "decr_quantity", id });
+    } else {
+      dispatch({ type: "remove_item", id });
+    }
   };
 
   useEffect(() => {
