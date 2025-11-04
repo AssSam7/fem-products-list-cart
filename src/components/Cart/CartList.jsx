@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import RemoveItemIcon from "../../assets/images/icon-remove-item.svg";
-import { CartContext } from "../context/CartContextProvider";
+import RemoveItemIcon from "../../../assets/images/icon-remove-item.svg";
+import { CartContext } from "../../context/CartContextProvider";
 
 export default function CartList({ items }) {
   const { dispatch } = useContext(CartContext);

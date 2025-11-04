@@ -1,5 +1,5 @@
-import ProductCart from "./components/ProductCart";
-import ProductsList from "./components/ProductsList";
+import ProductCart from "./components/Cart/ProductCart";
+import ProductsList from "./components/Product/ProductsList";
 import data from "./data.json";
 
 const products = data.map((item, i) => ({

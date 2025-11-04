@@ -1,9 +1,9 @@
 /* Assets */
-import AddToCartIcon from "../../assets/images/icon-add-to-cart.svg";
-import IncrementQuantityIcon from "../../assets/images/icon-increment-quantity.svg";
-import DecrementQuantityIcon from "../../assets/images/icon-decrement-quantity.svg";
+import AddToCartIcon from "../../../assets/images/icon-add-to-cart.svg";
+import IncrementQuantityIcon from "../../../assets/images/icon-increment-quantity.svg";
+import DecrementQuantityIcon from "../../../assets/images/icon-decrement-quantity.svg";
 /* Custom Hooks */
-import useProductCard from "../hooks/useProductCard";
+import useProductCard from "../../hooks/useProductCard";
 
 export default function ProductCard({ product }) {
   const { id, image, category, name, price } = product;

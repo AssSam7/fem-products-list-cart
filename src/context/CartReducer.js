@@ -53,11 +53,9 @@ export const cartReducer = (state, action) => {
     return {
       ...state,
       cartItems: updatedCartItems,
-      cartTotal: parseFloat(
-        parseFloat(
-          updatedCartItems.reduce((acc, curr) => acc + curr.totalCost, 0)
-        ).toFixed(2)
-      ),
+      cartTotal: updatedCartItems
+        .reduce((acc, curr) => acc + curr.totalCost, 0)
+        .toFixed(2),
     };
   } else if (action.type === "confirm_order") {
     return {
