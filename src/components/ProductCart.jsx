@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { CartContext } from "../context/CartContextProvider";
 import EmptyCart from "./EmptyCart";
 import CartList from "./CartList";
+import CartTotal from "./CartTotal";
 
 export default function ProductCart() {
   const { state } = useContext(CartContext);
@@ -12,7 +13,10 @@ export default function ProductCart() {
         Your Cart ({state.cartItems.length})
       </h2>
       {state.cartItems.length ? (
-        <CartList items={state.cartItems} />
+        <div>
+          <CartList items={state.cartItems} />
+          <CartTotal total={state.cartTotal} />
+        </div>
       ) : (
         <EmptyCart />
       )}

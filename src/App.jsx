@@ -2,7 +2,11 @@ import ProductCart from "./components/ProductCart";
 import ProductsList from "./components/ProductsList";
 import data from "./data.json";
 
-const products = data.map((item, i) => ({ ...item, id: i + 1 }));
+const products = data.map((item, i) => ({
+  ...item,
+  id: i + 1,
+  price: item.price,
+}));
 
 function App() {
   return (

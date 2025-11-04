@@ -5,7 +5,9 @@ export default function useProductCard(product) {
   const [isProductBeingAdded, setIsProductBeingAdded] = useState(false);
   const [productQuantity, setProductQuantity] = useState(0);
 
-  const { dispatch } = useContext(CartContext);
+  const { state, dispatch } = useContext(CartContext);
+
+  const cartIds = state.cartItems.map((item) => item.id);
 
   const handleAddToCart = () => {
     setIsProductBeingAdded(true);
@@ -14,9 +16,8 @@ export default function useProductCard(product) {
       type: "add",
       item: {
         ...product,
-        price: product.price.toFixed(2),
         quantity: 1,
-        totalCost: product.price.toFixed(2),
+        totalCost: product.price,
       },
     });
   };
@@ -40,6 +41,13 @@ export default function useProductCard(product) {
       setIsProductBeingAdded(false);
     }
   }, [productQuantity]);
+
+  useEffect(() => {
+    if (!cartIds.includes(product.id)) {
+      setIsProductBeingAdded(false);
+      setProductQuantity(0);
+    }
+  }, [cartIds, product.id]);
 
   return {
     productQuantity,
