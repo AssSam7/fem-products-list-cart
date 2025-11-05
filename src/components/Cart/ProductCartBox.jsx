@@ -1,18 +1,20 @@
-import { useContext } from "react";
+import { useContext, useState } from 'react';
 
-import EmptyCart from "./EmptyCart";
-import CartList from "./CartList";
-import CartTotal from "./CartTotal";
-import { CartContext } from "../../context/CartContextProvider";
-import CarbonNeutralCard from "../CarbonNeutralCard";
-import { ConfirmOrderButton } from "../Buttons/ConfirmOrderButton";
+import EmptyCart from './EmptyCart';
+import CartList from './CartList';
+import CartTotal from './CartTotal';
+import { CartContext } from '../../context/CartContextProvider';
+import CarbonNeutralCard from '../CarbonNeutralCard';
+import { ConfirmOrderButton } from '../Buttons/ConfirmOrderButton';
+import { OrderConfirmedModal } from '../Order/OrderConfirmedModal';
 
 export default function ProductCartBox() {
   const { state } = useContext(CartContext);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   return (
-    <div className="w-[30vw] bg-white min-h-[400px] max-h-[550px] overflow-auto p-7 flex flex-col gap-5 rounded-lg">
-      <h2 className="text-[#D6452A] text-2xl font-bold">
+    <div className="flex max-h-[550px] min-h-[400px] w-[30vw] flex-col gap-5 overflow-auto rounded-lg bg-white p-7">
+      <h2 className="text-2xl font-bold text-[#D6452A]">
         Your Cart ({state.cartItems.length})
       </h2>
       {state.cartItems.length ? (
@@ -20,7 +22,11 @@ export default function ProductCartBox() {
           <CartList items={state.cartItems} />
           <CartTotal total={state.cartTotal} />
           <CarbonNeutralCard />
-          <ConfirmOrderButton onConfirmOrder={() => {}} />
+          <ConfirmOrderButton onConfirmOrder={() => setModalOpen(true)} />
+          <OrderConfirmedModal
+            isOpen={isModalOpen}
+            onClose={() => setModalOpen(false)}
+          />
         </div>
       ) : (
         <EmptyCart />
