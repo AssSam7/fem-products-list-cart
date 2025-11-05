@@ -22,7 +22,7 @@ export default function ProductCartBox() {
           <CartList items={state.cartItems} />
           <CartTotal total={state.cartTotal} />
           <CarbonNeutralCard />
-          <PrimaryButton onConfirmOrder={() => setModalOpen(true)}>
+          <PrimaryButton handleClick={() => setModalOpen(true)}>
             Confirm Order
           </PrimaryButton>
           <OrderConfirmedModal

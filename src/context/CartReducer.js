@@ -48,7 +48,7 @@ export const cartReducer = (state, action) => {
     };
   } else if (action.type === "remove_item") {
     const updatedCartItems = state.cartItems.filter(
-      (item) => item.id !== action.id
+      (item) => item.id !== action.id,
     );
     return {
       ...state,
@@ -57,9 +57,11 @@ export const cartReducer = (state, action) => {
         .reduce((acc, curr) => acc + curr.totalCost, 0)
         .toFixed(2),
     };
-  } else if (action.type === "confirm_order") {
+  } else if (action.type === "start_new_order") {
     return {
       ...state,
+      cartItems: [],
+      cartTotal: 0,
       isOrderConfirmed: true,
     };
   }

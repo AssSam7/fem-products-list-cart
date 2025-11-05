@@ -2,8 +2,17 @@ import { Modal } from "../Modal";
 import OrderConfirmedIcon from "../../../assets/images/icon-order-confirmed.svg";
 import { PrimaryButton } from "../Buttons/PrimaryButton";
 import { OrderConfirmedProductList } from "./OrderConfirmedProductList";
+import { CartContext } from "../../context/CartContextProvider";
+import { useContext } from "react";
 
 export const OrderConfirmedModal = ({ isOpen, onClose }) => {
+  const { dispatch } = useContext(CartContext);
+
+  const handleNewOrder = () => {
+    dispatch({ type: "start_new_order" });
+    onClose();
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="flex flex-col gap-5">
@@ -20,7 +29,9 @@ export const OrderConfirmedModal = ({ isOpen, onClose }) => {
 
         <OrderConfirmedProductList />
 
-        <PrimaryButton>Start New Order</PrimaryButton>
+        <PrimaryButton handleClick={handleNewOrder}>
+          Start New Order
+        </PrimaryButton>
       </div>
     </Modal>
   );
