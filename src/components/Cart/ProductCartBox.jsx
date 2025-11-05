@@ -1,12 +1,12 @@
-import { useContext, useState } from 'react';
+import { useContext, useState } from "react";
 
-import EmptyCart from './EmptyCart';
-import CartList from './CartList';
-import CartTotal from './CartTotal';
-import { CartContext } from '../../context/CartContextProvider';
-import CarbonNeutralCard from '../CarbonNeutralCard';
-import { ConfirmOrderButton } from '../Buttons/ConfirmOrderButton';
-import { OrderConfirmedModal } from '../Order/OrderConfirmedModal';
+import EmptyCart from "./EmptyCart";
+import CartList from "./CartList";
+import CartTotal from "./CartTotal";
+import { CartContext } from "../../context/CartContextProvider";
+import CarbonNeutralCard from "../CarbonNeutralCard";
+import { OrderConfirmedModal } from "../Order/OrderConfirmedModal";
+import { PrimaryButton } from "../Buttons/PrimaryButton";
 
 export default function ProductCartBox() {
   const { state } = useContext(CartContext);
@@ -22,7 +22,9 @@ export default function ProductCartBox() {
           <CartList items={state.cartItems} />
           <CartTotal total={state.cartTotal} />
           <CarbonNeutralCard />
-          <ConfirmOrderButton onConfirmOrder={() => setModalOpen(true)} />
+          <PrimaryButton onConfirmOrder={() => setModalOpen(true)}>
+            Confirm Order
+          </PrimaryButton>
           <OrderConfirmedModal
             isOpen={isModalOpen}
             onClose={() => setModalOpen(false)}
