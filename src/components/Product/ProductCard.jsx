@@ -14,7 +14,9 @@ export default function ProductCard({ product }) {
         <img
           src={image["desktop"]}
           alt={name}
-          className="w-full h-auto rounded-lg"
+          className={`w-full h-auto rounded-lg ${
+            rest.isProductBeingAdded ? "border-[2.5px] border-[#D6452A]" : ""
+          }`}
         />
         <div className="w-full flex justify-center">
           <AddToCartButton id={id} {...rest} />

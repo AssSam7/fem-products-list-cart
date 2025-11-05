@@ -1,4 +1,4 @@
-import ProductCart from "./components/Cart/ProductCart";
+import ProductCartBox from "./components/Cart/ProductCartBox";
 import ProductsList from "./components/Product/ProductsList";
 import data from "./data.json";
 
@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="flex gap-9">
       <ProductsList products={products} />
-      <ProductCart />
+      <ProductCartBox />
     </div>
   );
 }
