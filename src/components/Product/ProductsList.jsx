@@ -2,9 +2,9 @@ import ProductCard from "./ProductCard";
 
 export default function ProductsList({ products }) {
   return (
-    <div className="flex flex-col gap-6 w-[60vw]">
+    <div className="flex w-full flex-col gap-6 sm:w-[60vw]">
       <h1 className="text-4xl font-bold">Desserts</h1>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid gap-5 sm:grid-cols-1 lg:grid-cols-3">
         {products.map((product) => (
           <ProductCard key={product.name} product={product} />
         ))}

@@ -13,7 +13,7 @@ export default function ProductCartBox() {
   const [isModalOpen, setModalOpen] = useState(false);
 
   return (
-    <div className="flex max-h-[550px] min-h-[400px] w-[30vw] flex-col gap-5 overflow-auto rounded-lg bg-white p-7">
+    <div className="flex h-auto w-full flex-col gap-5 overflow-auto rounded-lg bg-white p-7 sm:max-h-[550px] sm:min-h-[400px] sm:w-[30vw]">
       <h2 className="text-2xl font-bold text-[#D6452A]">
         Your Cart ({state.cartItems.length})
       </h2>

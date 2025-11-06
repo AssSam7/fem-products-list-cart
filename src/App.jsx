@@ -10,7 +10,7 @@ const products = data.map((item, i) => ({
 
 function App() {
   return (
-    <div className="flex gap-9">
+    <div className="flex flex-col gap-9 sm:flex-row">
       <ProductsList products={products} />
       <ProductCartBox />
     </div>

@@ -9,4 +9,8 @@ body {
   font-family: "MyCustomFont", sans-serif;
   margin: 4rem 6rem;
   background-color: #fdf6f3;
+
+  @media screen and (max-width: 620px) {
+    margin: 2rem 2rem;
+  }
 }
